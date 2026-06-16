@@ -1,0 +1,350 @@
+/* 1. ПІДКЛЮЧЕННЯ ШРИФТІВ ТА УНІВЕРСАЛЬНИЙ СЕЛЕКТОР */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. ПОВЕРТАЄМО ГЛИБОКИЙ ГРАДІЄНТ ТА ФОН СТОРІНКИ */
+html {
+    height: 100%;
+    scroll-behavior: smooth; /* Плавна прокрутка до якорів */
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: #0f172a; 
+    /* Глибокий темно-синій градієнт на весь екран */
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+    background-attachment: fixed;
+    color: #f1f5f9;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 3. НАВІГАЦІЯ */
+header {
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px); /* Ефект скла для хедеру */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+    height: 80px;
+    border-bottom: 2px solid #ff4500;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    color: #ff4500;
+    font-size: 1.6rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.main-nav {
+    display: flex;
+    list-style: none;
+    height: 100%;
+}
+
+.main-nav > li {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Невидимий місток під кнопкою */
+.main-nav > li::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 15px;
+}
+
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.main-nav a:hover, .dropdown:hover > a {
+    color: #ff4500;
+}
+
+/* ВИПАДАЮЧЕ МЕНЮ З ЕФЕКТОМ ЗАВИСАННЯ */
+.dropdown-content {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    background: #1a1a1a;
+    min-width: 220px;
+    list-style: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    border-top: 3px solid #ff4500;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transform: translateY(15px);
+}
+
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-content li a {
+    padding: 15px 20px;
+    display: block;
+    border-bottom: 1px solid #222;
+    font-size: 0.8rem;
+    text-transform: none;
+}
+
+.dropdown-content li a:hover {
+    background: #252525;
+}
+
+/* 4. ГОЛОВНИЙ КОНТЕНТ, КАРТКИ, ТІНІ, ПРОЗОРІСТЬ */
+main {
+    padding: 40px 10%;
+    flex: 1;
+}
+
+.hero-section {
+    text-align: center;
+    padding: 80px 20px 40px;
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 15px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.accent { color: #ff4500; }
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    color: #94a3b8;
+    font-weight: 400;
+}
+
+.program-card, .card {
+    background: rgba(30, 41, 59, 0.7); /* Напівпрозорий фон */
+    backdrop-filter: blur(12px); /* Ефект скла */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 900px;
+    margin: 30px auto;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6); /* Глибока тінь */
+}
+
+h2 {
+    color: #ff4500;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+/* 5. ГАЛЕРЕЯ ТА НАПРЯМКИ */
+.training-grid, .photo-grid, .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.training-item, .rule-item {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: 0.3s;
+}
+
+.training-item:hover {
+    background: rgba(255, 69, 0, 0.1);
+    border-color: #ff4500;
+    transform: translateY(-5px);
+}
+
+.training-item .icon { font-size: 2.5rem; display: block; margin-bottom: 15px; }
+.training-item h3 { color: #fff; margin-bottom: 10px; font-size: 1rem; }
+.training-item p { font-size: 0.85rem; color: #999; }
+
+.gallery-img {
+    width: 100%; height: 200px; object-fit: cover;
+    border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 0.4s;
+}
+
+.gallery-img:hover { transform: scale(1.03); border-color: #ff4500; }
+
+.rule-item {
+    border-left: 4px solid #ff4500;
+    text-align: left;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.rule-item h3 { color: #ff4500; font-size: 1rem; margin-bottom: 8px; text-transform: uppercase; }
+
+/* --- 6. ТАБЛИЦІ (ПОВЕРТАЄМО ЧЕРВОНЕ ПІДСВІЧУВАННЯ ТАРИФУ PRO) --- */
+.table-container { overflow-x: auto; margin-top: 20px; }
+
+.services-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #fff;
+    text-align: left;
+}
+
+.services-table th {
+    background: rgba(255, 69, 0, 0.15);
+    color: #ff4500;
+    padding: 18px 15px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    font-weight: 900;
+    border-bottom: 2px solid #ff4500;
+}
+
+.services-table td {
+    padding: 18px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ЧЕРВОНЕ ПІДСВІЧУВАННЯ ТАРИФУ PRO */
+.highlight-row {
+    background: rgba(255, 69, 0, 0.1) !important;
+}
+
+.highlight-row td {
+    color: #ff4500 !important;
+    font-weight: bold;
+}
+
+.services-table tr:not(.highlight-row):hover td {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+/* Напис (популярне) - стилізація */
+.tag-popular {
+    font-size: 0.75rem;
+    color: #ff4500;
+    background: rgba(255, 69, 0, 0.1);
+    padding: 3px 8px;
+    border-radius: 10px;
+    margin-left: 10px;
+    font-weight: 400;
+}
+
+/* --- 7. ПОВЕРТАЄМО ГАЛОЧКИ ДЛЯ ЧОМУ ОБИРАЮТЬ НАС (Блок 1.2) --- */
+#benefits .main-list {
+    list-style: none;
+    padding: 0;
+}
+
+#benefits .main-list li {
+    position: relative;
+    padding: 20px 20px 20px 50px; /* Відступ для галочки */
+    margin-bottom: 15px;
+    background: rgba(0, 0, 0, 0.2); /* Затемнений фон */
+    border-radius: 10px;
+    transition: 0.3s ease;
+}
+
+#benefits .main-list li:hover {
+    background: rgba(255, 69, 0, 0.05);
+}
+
+/* Помаранчева галочка ✓ */
+#benefits .main-list li::before {
+    content: "✓";
+    position: absolute; left: 20px; top: 22px;
+    color: #ff4500; font-size: 1.5rem; font-weight: bold;
+}
+
+/* Заголовок та текст всередині */
+#benefits .list-title {
+    color: #fff; font-weight: 700; font-size: 1.1rem; display: block; margin-bottom: 5px;
+}
+
+#benefits .list-text {
+    color: #94a3b8; font-size: 0.9rem; display: block;
+}
+
+/* --- 8. АКУРАТНИЙ ФІКС ДЛЯ КОНТАКТІВ --- */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 колонки */
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+@media (max-width: 800px) { .contact-container { grid-template-columns: 1fr; } }
+
+/* ФОРМИ ТА КНОПКИ */
+input, textarea {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 15px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    color: #fff;
+    border-radius: 8px;
+    font-family: inherit;
+}
+
+input:focus, textarea:focus { outline: none; border-color: #ff4500; }
+
+.btn {
+    background: #ff4500;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-weight: 900;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn:hover {
+    background: #e63e00;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255, 69, 0, 0.3);
+}
+
+/* 9. ПІДВАЛ */
+footer {
+    background: #000;
+    padding: 30px;
+    text-align: center;
+    margin-top: auto;
+    color: #64748b;
+    font-size: 0.85rem;
+}
